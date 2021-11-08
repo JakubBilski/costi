@@ -2,12 +2,13 @@
 
 COSTI performs classification of sequences of temporal intervals, **with** or **without** intensity values.
 
-Example sequence from Musekey dataset (intensity value = velocity of a key press):
 
 <p align="center">
 <img src="../main/musekey_example.png"
   alt="Visualization of example sequence in intervals format: a piece played on a piano.">
+  <i>Example sequence from Musekey dataset (intensity value = velocity of a key press)</i><br>
 </p>
+
 
 You can use COSTI when your data can be expressed as:
 
@@ -70,4 +71,4 @@ Alternatively, you can create
 train_timestamps, train_channels, train_values, train_examples_s
 test_timestamps, test_channels, test_values, test_examples_s
 ```
-on your own. Please note that these are 1-d vectors, so the information about sequences is concatenated. `train_timestamps` is all timestamps where any value changes (an event starts **or** ends). `train_channels` is a channel where this change happened. `train_values` is the value of the change. So, if an event with intensity value equal to 15 *begins*, value will be 15, but if it *ends*, it will be -15. If your data does not contain intensity values, set all values to 1 and -1, depending on whether the timestamps is of event start of event end. Finally, `train_examples_s` is a sequence of indexes where information about i-th sequence starts. So, `train_examples_s[0]` is always equal to zero (start index of the first sequence), and `train_examples_s[1]` is the index where data for the second sequence begins. 
+on your own. Please note that these are 1-d vectors, so the information about sequences is concatenated. `train_timestamps` is all timestamps where any value changes (an event starts **or** ends). `train_channels` is a channel where this change happens. `train_values` is the value of the change. So, if an event with intensity value equal to 15 *begins*, the value will be 15, but if it *ends*, it will be -15. If your data does not contain intensity values, set all values to 1 and -1, depending on whether the timestamps is of event start or of event end. Finally, `train_examples_s` is a sequence of indexes where information about i-th sequence starts. So, `train_examples_s[0]` is always equal to zero (start index of the first sequence), and `train_examples_s[1]` is the index where data for the second sequence begins. 
