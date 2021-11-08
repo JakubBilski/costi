@@ -2,15 +2,12 @@
 
 COSTI performs classification of sequences of temporal intervals, **with** or **without** intensity values.
 
-Example sequence form Musekey dataset:
+Example sequence from Musekey dataset (intensity value = velocity of a key press):
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/JakubBilski/costi/main/assets/musekey_example.png"
-  alt="Visualization of example sequence in intervals format: a piece played on a piano."
-  width="686" height="289">
+<img src="../main/musekey_example.png"
+  alt="Visualization of example sequence in intervals format: a piece played on a piano.">
 </p>
-
-(intensity value is velocity of a key press).
 
 You can use COSTI when your data can be expressed as:
 
@@ -66,3 +63,11 @@ if __name__ == '__main__':
     print(f"Accuracy: {score}")
     print(f"Time: {elapsed_time}")
 ```
+
+For example input files, see [data](../main/data). Data from files can be loaded with [load_data.py](../main/src/load_data.py), and then transformed with [transform_to_input_format.py](../main/src/transform_to_input_format.py), like in the example above.
+Alternatively, you can create
+```
+train_timestamps, train_channels, train_values, train_examples_s
+test_timestamps, test_channels, test_values, test_examples_s
+```
+on your own. Please note that these are 1-d vectors, so the information about sequences is concatenated. `train_timestamps` is all timestamps where any value changes (an event starts **or** ends). `train_channels` is a channel where this change happened. `train_values` is the value of the change. So, if an event with intensity value equal to 15 *begins*, value will be 15, but if it *ends*, it will be -15. If your data does not contain intensity values, set all values to 1 and -1, depending on whether the timestamps is of event start of event end. Finally, `train_examples_s` is a sequence of indexes where information about i-th sequence starts. So, `train_examples_s[0]` is always equal to zero (start index of the first sequence), and `train_examples_s[1]` is the index where data for the second sequence begins. 
