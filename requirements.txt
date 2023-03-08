@@ -1,0 +1,4 @@
+# tested with python 3.7
+numpy
+scikit-learn
+numba
