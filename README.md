@@ -1,5 +1,7 @@
 # COSTI
 
+Article: https://ieeexplore.ieee.org/abstract/document/10032331
+
 COSTI performs classification of sequences of temporal intervals, **with** or **without** intensity values.
 
 
